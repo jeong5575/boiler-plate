@@ -3,9 +3,10 @@ const app = express()
 const port = 4000
 const bodyParser = require('body-parser');
 const {User} = require('./models/User'); 
+const config = require('./config/key' );
 
 const mongoose = require('mongoose') 
-mongoose.connect ('mongodb+srv://yuseok5575:hagung1014!@boilerplate.k53ydje.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect (config.mongoURI)
 .then(()=>console.log('mongodb connceted')).catch(err=>console.log(err))
 
 
