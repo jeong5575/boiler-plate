@@ -7,7 +7,8 @@ const config = require('./config/key' );
 
 const mongoose = require('mongoose') 
 mongoose.connect (config.mongoURI)
-.then(()=>console.log('mongodb connceted')).catch(err=>console.log(err))
+    .then(()=>console.log('mongodb connceted'))
+    .catch(err=>console.log(err))
 
 
 app.use(bodyParser.urlencoded({extended:true}));
