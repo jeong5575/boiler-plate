@@ -24,7 +24,7 @@ role:{
 },
 image:String,
 token:{
-    type:string
+    type:String
 },
 tokenExp:{
     type:Number
