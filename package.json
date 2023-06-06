@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "backend": "nodemon index.js",
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
   },
   "author": "yu-seok",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "mongoose": "^7.2.2"
   },
   "devDependencies": {
+    "concurrently": "^8.1.0",
     "nodemon": "^2.0.22"
   }
 }
