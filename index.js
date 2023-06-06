@@ -32,46 +32,44 @@ app.post('/register', (req, res) => {
         return res.json({ success: false, err });
       });
   });
-  
-  app.post('/login', (req, res) => {
-    User.findOne({ email: req.body.email })
-      .then((user) => {
-        if (!user) {
-          return res.json({
-            loginSuccess: false,
-            message: "제공된 이메일에 해당하는 유저가 없습니다.",
-          });
-        }
-  
-        return user.comparePassword(req.body.password)
-          .then((isMatch) => {
-            if (!isMatch) {
-              return res.json({
-                loginSuccess: false,
-                message: "비밀번호가 틀렸습니다.",
-              });
-            }
-  
-            return user.generateToken()
-              .then((user) => {
-                res.cookie("x_auth", user.token)
-                  .status(200)
-                  .json({
-                    loginSuccess: true,
-                    userId: user._id,
-                  });
-              });
-          });
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).json({
-          loginSuccess: false,
-          message: "로그인 중 오류가 발생했습니다.",
-        });
-      });
-  });
 
+  app.post('/login', async (req, res) => {
+    try {
+      const user = await User.findOne({ email: req.body.email });
+    
+      if (!user) {
+        return res.json({
+          loginSuccess: false,
+          message: "제공된 이메일에 해당하는 유저가 없습니다.",
+        });
+      }
+    
+      const isMatch = await user.comparePassword(req.body.password);
+    
+      if (!isMatch) {
+        return res.json({
+          loginSuccess: false,
+          message: "비밀번호가 틀렸습니다.",
+        });
+      }
+    
+      const generatedUser = await user.generateToken();
+    
+      res.cookie("x_auth", generatedUser.token)
+        .status(200)
+        .json({
+          loginSuccess: true,
+          userId: generatedUser._id,
+        });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        loginSuccess: false,
+        message: "로그인 중 오류가 발생했습니다.",
+      });
+    }
+  });
+  
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
