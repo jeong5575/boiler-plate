@@ -37,7 +37,7 @@ tokenExp:{
 }) 
 
 userSchema.pre('save',function(next){
-  var user = this; 
+  let user = this; 
   if(user.isModified('password')){
 
   
@@ -65,11 +65,22 @@ userSchema.methods.comparePassword = function (plainPassword) {
   };
 
   userSchema.methods.generateToken = function () {
-    var user = this;
-    var token = jwt.sign(user._id.toString(), "secretToken");
+    let user = this;
+    let token = jwt.sign(user._id.toString(), "secretToken");
     user.token = token;
     return user.save().then((user) => user);
   };
   
+  userSchema.statics.findByToken =async function(token){
+    
+    const user = this;
+    try{ const decoded = jwt.verify(token, "secretToken");
+
+       return founduser = await  user.findOne({"_id": decoded,"token":token})
+
+        }catch(err){
+            throw(err); }
+  };
+
 const User = mongoose.model('user',userSchema)
 module.exports={User}

@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const {User} = require('./models/User'); 
 const config = require('./config/key' );
 const cookieParser = require('cookie-parser');
-
+const {auth} =require('./middleware/auth'); 
 const mongoose = require('mongoose') 
 mongoose.connect (config.mongoURI)
     .then(()=>console.log('mongodb connceted'))
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.post('/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
     const user = new User(req.body);
   
     user.save()
@@ -33,7 +33,7 @@ app.post('/register', (req, res) => {
       });
   });
 
-  app.post('/login', async (req, res) => {
+  app.post('/api/users/login', async (req, res) => {
     try {
       const user = await User.findOne({ email: req.body.email });
     
@@ -69,7 +69,31 @@ app.post('/register', (req, res) => {
       });
     }
   });
-  
+
+  app.get('/api/users/auth',auth, (req,res)=>{
+        res.status(200).json({
+            _id: req.user._id,
+            isAdmin: req.user.role === 0 ? false : true ,
+            isAuth : true,
+            email : req.user.email,
+            name : req.user.name,
+            lastname : req.user.lastname,
+            role : req.user.role,
+            image: req.user.image
+        })
+  })
+
+app.get('/api/users/logout',auth,async (req,res) =>{
+try{await User.findOneAndUpdate({_id: req.user._id}, {token:""})
+    
+    res.status(200).send({success:true})   }
+catch(err){
+    res.json({success:false , err})
+}
+
+
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
