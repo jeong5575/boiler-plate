@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import {useDispatch} from 'react-redux'
 import { loginUser } from '../../../_actions/user_action';
+import { useNavigate } from 'react-router-dom';
 
-
-export default function LoginPage() {
-
+export default function LoginPage(props) {
+const navigate = useNavigate();
   const dispatch = useDispatch();
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
@@ -23,6 +22,10 @@ export default function LoginPage() {
     let body = {email : Email,password:Password}
 
     dispatch(loginUser(body))
+    .then(res=>{
+      if (res.payload.loginSuccess){navigate('/')}
+      else {alert('로그인에 실패하였습니다.')}
+    })
   };
 
   return (
