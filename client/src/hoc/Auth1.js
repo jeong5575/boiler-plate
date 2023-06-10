@@ -12,15 +12,19 @@ export default function Auth1 (SpecificComponent, option, adminRoute = null) {
     useEffect(() => {
       dispatch(auth()).then(res => {
         console.log(res);
-        // if (!res.payload.isAuth) {
-        //   if (option) navigate('/login');
-        //   // 로그인한 상태
-        //   else {
-        //     if (adminRoute && !res.payload.isAdmin) navigate('/');
-        //     // 로그인하지 않은 상태
-        //     else if (option === false) navigate('/');
-        //   }
-        // }
+
+        if (!res.payload.isAuth)
+        if (option) navigate('/login');
+
+         if (res.payload.isAuth) {
+           if (!option) navigate('/');
+        // 로그인안한 상태로 로그인 들어갈때
+        else {
+             if (adminRoute && !res.payload.isAdmin) navigate('/');
+           // 로그인 상태로 
+             else if (option === false) navigate('/');
+           }
+       }
       });
     }, [dispatch, navigate]);
 
