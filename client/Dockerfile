@@ -1,5 +1,5 @@
 # 단계 1: Node.js 빌드 단계
-FROM node:14 as build-stage
+FROM node:alpine as build-stage
 
 WORKDIR /app
 
@@ -15,6 +15,6 @@ FROM nginx:alpine
 COPY --from=build-stage /app/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+EXPOSE 3000
 
 CMD ["nginx", "-g", "daemon off;"] 
