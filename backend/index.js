@@ -1,12 +1,12 @@
-const express = require('express')
-const app = express()
-const port = 4001
+const express = require('express');
+const app = express();
+const port = 5000;
 const bodyParser = require('body-parser');
 const {User} = require('./models/User'); 
 const config = require('./config/key' );
 const cookieParser = require('cookie-parser');
 const {auth} =require('./middleware/auth'); 
-const mongoose = require('mongoose') 
+const mongoose = require('mongoose') ;
 mongoose.connect (config.mongoURI)
     .then(()=>console.log('mongodb connceted'))
     .catch(err=>console.log(err))
@@ -15,11 +15,11 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // frontend의 도메인 및 포트
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+//   app.use((req, res, next) => {
+//    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:3000'); // frontend의 도메인 및 포트
+//    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//    next();
+//  });
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
