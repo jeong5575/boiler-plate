@@ -1,18 +1,51 @@
-name: Docker Image CI
+name: Deploy to EC2
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ADMIN_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_ADMIN_SECRET_ACCESS_KEY}}
+          aws-region: ${{ secrets.AWS_ADMIN_REGION}}
+
+      - name: Install and configure AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+          aws configure set default.region ${{ secrets.AWS_ADMIN_REGION}}
+
+      - name: Build and tag Docker images
+        run: |
+          docker-compose build
+
+      - name: Login to Amazon ECR Public
+        id: login-ecr-public
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registry-type: public
+  
+      - name: Build, tag, and push docker image to Amazon ECR Public
+        env:
+          REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
+          REGISTRY_ALIAS: yuseok-web 
+          REPOSITORY: yuseok-web 
+          IMAGE_TAG: composed-docker
+        run: |
+          docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+
+      # - name: Connect to EC2 instance and deploy
+      #   run: |
+      #     ssh -i <path-to-ssh-private-key> <ec2-user>@<ec2-instance-ip> "sudo docker-compose -f <path-to-docker-compose-file> up -d"
