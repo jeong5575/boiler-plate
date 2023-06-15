@@ -22,13 +22,16 @@ jobs:
 
       - name: Install and configure AWS CLI
         run: |
-          sudo apt-get update
-          sudo apt-get install -y awscli
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install --update
           aws configure set default.region ${{ secrets.AWS_ADMIN_REGION}}
-
+          
+          
       - name: Build and tag Docker images
         run: |
           docker-compose build
+
 
       - name: Login to Amazon ECR Public
         run: |
