@@ -55,7 +55,14 @@ jobs:
           IMAGE_TAG: composed-docker
         run: |
           docker-compose build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+          docker tag boiler-plate-backend:latest $REGISTRY/boiler-plate-backend:$IMAGE_TAG
+          docker push $REGISTRY/boiler-plate-backend:$IMAGE_TAG
+
+          docker tag boiler-plate-frontend:latest $REGISTRY/boiler-plate-frontend:$IMAGE_TAG
+          docker push $REGISTRY/boiler-plate-frontend:$IMAGE_TAG
+
+          docker tag boiler-plate-nginx:latest $REGISTRY/boiler-plate-nginx:$IMAGE_TAG
+          docker push $REGISTRY/boiler-plate-nginx:$IMAGE_TAG
 
       # - name: Connect to EC2 instance and deploy
       #   run: |
