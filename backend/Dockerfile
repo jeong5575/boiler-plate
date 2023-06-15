@@ -5,7 +5,7 @@ FROM node:18-alpine
 WORKDIR /app
 
 # 애플리케이션 종속성 설치
-COPY ../package*.json ./
+COPY package*.json ./
 RUN npm ci --only=production 
 
 # 소스 코드 복사
