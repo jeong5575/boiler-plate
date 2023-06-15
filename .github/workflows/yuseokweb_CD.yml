@@ -47,22 +47,18 @@ jobs:
           AWS_ECR_PASSWORD=$(aws ecr-public get-login-password --region us-east-1)
           echo $AWS_ECR_PASSWORD | docker login --username AWS --password-stdin public.ecr.aws/yuseok-web
 
-      - name: Build, tag, and push docker image to Amazon ECR Public
+      - name: Push Docker images to Amazon ECR Public
         env:
-          REGISTRY: public
-          REGISTRY_ALIAS: yuseok-web 
-          REPOSITORY: yuseok-web 
+          REGISTRY: public.ecr.aws/p3v6m0m2/yuseok-web
           IMAGE_TAG: latest
         run: |
-          docker-compose build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
-          docker tag boiler-plate-backend:latest $REGISTRY/boiler-plate-backend:$IMAGE_TAG
-          docker push $REGISTRY/boiler-plate-backend:$IMAGE_TAG
-
-          docker tag boiler-plate-frontend:latest $REGISTRY/boiler-plate-frontend:$IMAGE_TAG
-          docker push $REGISTRY/boiler-plate-frontend:$IMAGE_TAG
-
-          docker tag boiler-plate-nginx:latest $REGISTRY/boiler-plate-nginx:$IMAGE_TAG
-          docker push $REGISTRY/boiler-plate-nginx:$IMAGE_TAG
+          docker-compose build
+          docker tag yuseok-web_backend:latest $REGISTRY/yuseok-web_backend:$IMAGE_TAG
+          docker tag yuseok-web_frontend:latest $REGISTRY/yuseok-web_frontend:$IMAGE_TAG
+          docker tag yuseok-web_nginx:latest $REGISTRY/yuseok-web_nginx:$IMAGE_TAG
+          docker push $REGISTRY/yuseok-web_backend:$IMAGE_TAG
+          docker push $REGISTRY/yuseok-web_frontend:$IMAGE_TAG
+          docker push $REGISTRY/yuseok-web_nginx:$IMAGE_TAG
 
       # - name: Connect to EC2 instance and deploy
       #   run: |
