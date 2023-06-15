@@ -52,7 +52,7 @@ jobs:
           REGISTRY: public
           REGISTRY_ALIAS: yuseok-web 
           REPOSITORY: yuseok-web 
-          IMAGE_TAG: composed-docker
+          IMAGE_TAG: latest
         run: |
           docker-compose build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
           docker tag boiler-plate-backend:latest $REGISTRY/boiler-plate-backend:$IMAGE_TAG
