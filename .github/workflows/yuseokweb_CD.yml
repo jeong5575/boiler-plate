@@ -53,12 +53,9 @@ jobs:
           IMAGE_TAG: latest
         run: |
           docker-compose build
-          docker tag yuseok-web_backend:latest $REGISTRY/yuseok-web_backend:$IMAGE_TAG
-          docker tag yuseok-web_frontend:latest $REGISTRY/yuseok-web_frontend:$IMAGE_TAG
-          docker tag yuseok-web_nginx:latest $REGISTRY/yuseok-web_nginx:$IMAGE_TAG
-          docker push $REGISTRY/yuseok-web_backend:$IMAGE_TAG
-          docker push $REGISTRY/yuseok-web_frontend:$IMAGE_TAG
-          docker push $REGISTRY/yuseok-web_nginx:$IMAGE_TAG
+          docker push $REGISTRY/boiler-plate-backend:$IMAGE_TAG
+          docker push $REGISTRY/boiler-plate-frontend:$IMAGE_TAG
+          docker push $REGISTRY/boiler-plate-nginx:$IMAGE_TAG
 
       # - name: Connect to EC2 instance and deploy
       #   run: |
