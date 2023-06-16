@@ -17,8 +17,9 @@ services:
   nginx:
     restart: always
     build:
-      dockerfile: Dockerfile
       context: ./nginx
+      dockerfile: Dockerfile
+      
     ports:
       - 2000:80
     networks:

@@ -5,7 +5,7 @@ on:
     branches:
       - main
 env:
-  Tag: latest5
+  Tag: latest6
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -53,6 +53,7 @@ jobs:
             docker pull jeong5575/boiler-plate-nginx:${{env.Tag}}
             docker stop $(docker ps -aq)
             docker rm $(docker ps -aq)
+            docker rmi $(docker images -q)
             docker run -d --name frontend jeong5575/boiler-plate-frontend:${{env.Tag}}
             docker run -d --name backend jeong5575/boiler-plate-backend:${{env.Tag}}
             docker run -d --name nginx -p 2000:80 jeong5575/boiler-plate-nginx:${{env.Tag}}
