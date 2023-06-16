@@ -32,12 +32,12 @@ jobs:
         run: |
           docker login --username jeong5575 --password ${{ secrets.DOCKER_PASSWORD }}
           docker compose build
-          docker tag boiler-plate-frontend jeong5575/boiler-plate-frontend2
-          docker tag boiler-plate-backend jeong5575/boiler-plate-backend2
-          docker tag boiler-plate-nginx jeong5575/boiler-plate-nginx2
-          docker push jeong5575/boiler-plate-frontend2
-          docker push jeong5575/boiler-plate-backend2
-          docker push jeong5575/boiler-plate-nginx2
+          docker tag boiler-plate-frontend jeong5575/boiler-plate-frontend2:latest3
+          docker tag boiler-plate-backend jeong5575/boiler-plate-backend2:latest3
+          docker tag boiler-plate-nginx jeong5575/boiler-plate-nginx2:latest3
+          docker push jeong5575/boiler-plate-frontend2:latest3
+          docker push jeong5575/boiler-plate-backend2:latest3
+          docker push jeong5575/boiler-plate-nginx2:latest3
 
       - name: SSH into EC2 instance and run commands
         uses: appleboy/ssh-action@master

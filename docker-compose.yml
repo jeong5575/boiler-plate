@@ -5,8 +5,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      args:
-        - IMAGE_TAG=latest
 
     stdin_open: true
 
@@ -14,16 +12,11 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-      args:
-        - IMAGE_TAG=latest
-
     
   nginx:
       restart: always
       build:
         dockerfile: Dockerfile
-        args:
-        - IMAGE_TAG=latest
         context: ./nginx
       ports:  
         - 2000:80
