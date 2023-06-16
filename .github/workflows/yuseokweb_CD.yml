@@ -32,12 +32,12 @@ jobs:
         run: |
           docker login --username jeong5575 --password ${{ secrets.DOCKER_PASSWORD }}
           docker compose build
-          docker tag boiler-plate-frontend jeong5575/boiler-plate-frontend
-          docker tag boiler-plate-backend jeong5575/boiler-plate-backend
-          docker tag boiler-plate-nginx jeong5575/boiler-plate-nginx
-          docker push jeong5575/boiler-plate-frontend:latest
-          docker push jeong5575/boiler-plate-backend:latest
-          docker push jeong5575/boiler-plate-nginx:latest
+          docker tag boiler-plate-frontend jeong5575/boiler-plate-frontend2
+          docker tag boiler-plate-backend jeong5575/boiler-plate-backend2
+          docker tag boiler-plate-nginx jeong5575/boiler-plate-nginx2
+          docker push jeong5575/boiler-plate-frontend2:latest
+          docker push jeong5575/boiler-plate-backend2:latest
+          docker push jeong5575/boiler-plate-nginx2:latest
 
       - name: SSH into EC2 instance and run commands
         uses: appleboy/ssh-action@master
@@ -47,11 +47,11 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker login --username jeong5575 --password ${{ secrets.DOCKER_PASSWORD }}
-            docker pull jeong5575/boiler-plate-frontend:latest
-            docker pull jeong5575/boiler-plate-backend:latest
-            docker pull jeong5575/boiler-plate-nginx:latest
-            docker run -d --name frontend jeong5575/boiler-plate-frontend:latest
-            docker run -d --name backend jeong5575/boiler-plate-backend:latest
-            docker run -d --name nginx -p 3010:80 jeong5575/boiler-plate-nginx:latest
+            docker pull jeong5575/boiler-plate-frontend2:latest
+            docker pull jeong5575/boiler-plate-backend2:latest
+            docker pull jeong5575/boiler-plate-nginx2:latest
+            docker run -d --name frontend jeong5575/boiler-plate-frontend2:latest
+            docker run -d --name backend jeong5575/boiler-plate-backend2:latest
+            docker run -d --name nginx -p 3010:80 jeong5575/boiler-plate-nginx2:latest
       
             
