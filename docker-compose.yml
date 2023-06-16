@@ -1,22 +1,28 @@
 version: "3"
 services:
   frontend:
-    
     build:
       context: ./frontend
       dockerfile: Dockerfile
-
-    stdin_open: true
+    networks:
+      - mynetwork
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    
+    networks:
+      - mynetwork
+
   nginx:
-      restart: always
-      build:
-        dockerfile: Dockerfile
-        context: ./nginx
-      ports:  
-        - 2000:80
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - 2000:80
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
