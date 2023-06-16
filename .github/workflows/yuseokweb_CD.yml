@@ -51,8 +51,10 @@ jobs:
             docker pull jeong5575/boiler-plate-frontend:${{env.Tag}}
             docker pull jeong5575/boiler-plate-backend:${{env.Tag}}
             docker pull jeong5575/boiler-plate-nginx:${{env.Tag}}
-            docker run -d --name frontend1 jeong5575/boiler-plate-frontend:${{env.Tag}}
-            docker run -d --name backend1 jeong5575/boiler-plate-backend:${{env.Tag}}
-            docker run -d --name nginx1 -p 2000:80 jeong5575/boiler-plate-nginx:${{env.Tag}}
+            docker stop $(docker ps -aq)
+            docker rm $(docker ps -aq)
+            docker run -d --name frontend jeong5575/boiler-plate-frontend:${{env.Tag}}
+            docker run -d --name backend jeong5575/boiler-plate-backend:${{env.Tag}}
+            docker run -d --name nginx -p 2000:80 jeong5575/boiler-plate-nginx:${{env.Tag}}
       
             
