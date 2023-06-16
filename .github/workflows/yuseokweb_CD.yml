@@ -32,9 +32,6 @@ jobs:
         run: |
           docker login --username jeong5575 --password ${{ secrets.DOCKER_PASSWORD }}
           docker compose build
-          docker tag boiler-plate-frontend jeong5575 / boiler-plate-frontend:latest
-          docker tag boiler-plate-backend jeong5575 / boiler-plate-backend:latest
-          docker tag boiler-plate-nginx jeong5575 / boiler-plate-nginx:latest
           docker push jeong5575/boiler-plate-frontend:latest
           docker push jeong5575/boiler-plate-backend:latest
           docker push jeong5575/boiler-plate-nginx:latest
