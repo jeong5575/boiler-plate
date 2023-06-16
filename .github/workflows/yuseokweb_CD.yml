@@ -30,7 +30,7 @@ jobs:
           
       - name: Build and tag and push images to Docker Hub
         run: |
-          docker login --username jeong5575 --password ${{ env.DOCKER_PASSWORD }}
+          docker login --username jeong5575 --password ${{ secrets.DOCKER_PASSWORD }}
           docker compose build
           docker tag boiler-plate-frontend jeong5575 / boiler-plate-frontend:latest
           docker tag boiler-plate-backend jeong5575 / boiler-plate-backend:latest
