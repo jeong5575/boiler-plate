@@ -39,16 +39,19 @@ jobs:
           docker push jeong5575/boiler-plate-backend:latest
           docker push jeong5575/boiler-plate-nginx:latest
 
-          
-      # - name: Login to Amazon ECR Public
-      #   run: |
-      #     echo "${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
-      #     echo "${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
-      #     aws configure set region us-east-1
-      #     AWS_ECR_PASSWORD=$(aws ecr-public get-login-password --region us-east-1)
-      #     echo $AWS_ECR_PASSWORD | docker login --username AWS --password-stdin public.ecr.aws/yuseok-web
-
-     
-      # - name: Connect to EC2 instance and deploy
-      #   run: |
-      #     ssh -i <path-to-ssh-private-key> <ec2-user>@<ec2-instance-ip> "sudo docker-compose -f <path-to-docker-compose-file> up -d"
+      - name: SSH into EC2 instance and run commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: <your-ec2-instance-ip>
+          username: ec2-user
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            docker login --username jeong5575 --password ${{ secrets.DOCKER_PASSWORD }}
+            docker pull jeong5575/boiler-plate-frontend:latest
+            docker pull jeong5575/boiler-plate-backend:latest
+            docker pull jeong5575/boiler-plate-nginx:latest
+            docker run -d --name frontend jeong5575/boiler-plate-frontend:latest
+            docker run -d --name backend jeong5575/boiler-plate-backend:latest
+            docker run -d --name nginx -p 80:80 jeong5575/boiler-plate-nginx:latest
+      
+            
