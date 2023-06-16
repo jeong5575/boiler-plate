@@ -35,9 +35,9 @@ jobs:
           docker tag boiler-plate-frontend jeong5575/boiler-plate-frontend2
           docker tag boiler-plate-backend jeong5575/boiler-plate-backend2
           docker tag boiler-plate-nginx jeong5575/boiler-plate-nginx2
-          docker push jeong5575/boiler-plate-frontend2:latest
-          docker push jeong5575/boiler-plate-backend2:latest
-          docker push jeong5575/boiler-plate-nginx2:latest
+          docker push jeong5575/boiler-plate-frontend2:latest2
+          docker push jeong5575/boiler-plate-backend2:latest2
+          docker push jeong5575/boiler-plate-nginx2:latest2
 
       - name: SSH into EC2 instance and run commands
         uses: appleboy/ssh-action@master
@@ -47,11 +47,11 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker login --username jeong5575 --password ${{ secrets.DOCKER_PASSWORD }}
-            docker pull jeong5575/boiler-plate-frontend2:latest
-            docker pull jeong5575/boiler-plate-backend2:latest
-            docker pull jeong5575/boiler-plate-nginx2:latest
-            docker run -d --name frontend jeong5575/boiler-plate-frontend2:latest
-            docker run -d --name backend jeong5575/boiler-plate-backend2:latest
-            docker run -d --name nginx -p 3010:80 jeong5575/boiler-plate-nginx2:latest
+            docker pull jeong5575/boiler-plate-frontend2:latest2
+            docker pull jeong5575/boiler-plate-backend2:latest2
+            docker pull jeong5575/boiler-plate-nginx2:latest2
+            docker run -d --name frontend1 jeong5575/boiler-plate-frontend2:latest2
+            docker run -d --name backend1 jeong5575/boiler-plate-backend2:latest2
+            docker run -d --name nginx1 -p 3010:80 jeong5575/boiler-plate-nginx2:latest2
       
             
