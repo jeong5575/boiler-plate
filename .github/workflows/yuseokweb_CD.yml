@@ -52,6 +52,6 @@ jobs:
             docker pull jeong5575/boiler-plate-nginx:latest
             docker run -d --name frontend jeong5575/boiler-plate-frontend:latest
             docker run -d --name backend jeong5575/boiler-plate-backend:latest
-            docker run -d --name nginx -p 80:80 jeong5575/boiler-plate-nginx:latest
+            docker run -d --name nginx -p 3010:80 jeong5575/boiler-plate-nginx:latest
       
             
