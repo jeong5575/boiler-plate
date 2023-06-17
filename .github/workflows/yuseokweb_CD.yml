@@ -56,6 +56,6 @@ jobs:
             docker rmi $(docker images -q)
             docker run -d --name frontend jeong5575/boiler-plate-frontend:${{env.Tag}}
             docker run -d --name backend jeong5575/boiler-plate-backend:${{env.Tag}}
-            docker run -d --name nginx -p 2000:80 jeong5575/boiler-plate-nginx:${{env.Tag}}
+            docker run -d --name nginx  jeong5575/boiler-plate-nginx:${{env.Tag}}
       
             
