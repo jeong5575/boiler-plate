@@ -15,7 +15,6 @@ services:
       - mynetwork
 
   nginx:
-    restart: always
     build:
       context: ./nginx
       dockerfile: Dockerfile
