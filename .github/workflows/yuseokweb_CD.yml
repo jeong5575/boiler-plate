@@ -5,7 +5,7 @@ on:
     branches:
       - main
 env:
-  Tag: latest7
+  Tag: 1.0.1
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -54,8 +54,8 @@ jobs:
             docker stop $(docker ps -aq)
             docker rm $(docker ps -aq)
             docker rmi $(docker images -q)
-            docker run -d -p --name frontend jeong5575/boiler-plate-frontend:${{env.Tag}}
-            docker run -d -p --name backend jeong5575/boiler-plate-backend:${{env.Tag}}
-            docker run -d -p --name nginx  jeong5575/boiler-plate-nginx:${{env.Tag}}
+            docker run -d --name frontend jeong5575/boiler-plate-frontend:${{env.Tag}}
+            docker run -d --name backend jeong5575/boiler-plate-backend:${{env.Tag}}
+            docker run -d -p 2000:80 --name nginx  jeong5575/boiler-plate-nginx:${{env.Tag}}
       
             
