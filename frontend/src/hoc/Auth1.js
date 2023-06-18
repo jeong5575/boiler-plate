@@ -17,7 +17,7 @@ export default function Auth1 (SpecificComponent, option, adminRoute = null) {
         if (option) navigate('/login');
 
          if (res.payload.isAuth) {
-           if (!option) navigate('/');
+           if (!option) {navigate('/');alert("로그인 되어 있는 상태 입니다.")}
         // 로그인안한 상태로 로그인 들어갈때
         else {
              if (adminRoute && !res.payload.isAdmin) navigate('/');

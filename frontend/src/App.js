@@ -11,7 +11,7 @@ function App() {
     <Router>
       <div>
     <Routes>
-      <Route path="/" exact element={Auth1(LandingPage,true)} />
+      <Route path="/" exact element={Auth1(LandingPage)} />
       <Route path="/login" element={Auth1(LoginPage,false)} />
       <Route path="/register" element={Auth1(RegisterPage)} />
     </Routes>
