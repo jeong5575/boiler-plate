@@ -30,7 +30,7 @@ const onClickHandlerRegister = ()=>{
   
   {navigate('/register') } else alert("로그인에 실패하였습니다.")
   })
-
+}
 
   return (
     <div style={{display :'flex',justifyContent:'center',alignItems:'center' ,width:'100%',height:'100vh'}}> 됫다 ㅋㅋ
