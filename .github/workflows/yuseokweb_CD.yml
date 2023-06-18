@@ -31,6 +31,7 @@ jobs:
           
       - name: Build and tag and push images to Docker Hub
         run: |
+          docker login --username jeong5575 --password ${{ secrets.DOCKER_PASSWORD }}
           docker compose build
           docker tag boiler-plate-frontend jeong5575/boiler-plate-frontend:${{env.Tag}}
           docker tag boiler-plate-backend jeong5575/boiler-plate-backend:${{env.Tag}}
@@ -46,7 +47,6 @@ jobs:
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker login --username jeong5575 --password ${{ secrets.DOCKER_PASSWORD }}
             docker stop $(docker ps -aq)
             docker rm $(docker ps -aq)
             docker rmi $(docker images -q)
