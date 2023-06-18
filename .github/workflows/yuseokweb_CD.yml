@@ -56,6 +56,6 @@ jobs:
             docker pull jeong5575/boiler-plate-nginx:${{env.Tag}}
             docker run -d --name nginx -p 2000:80 --restart always --network yuseok-web jeong5575/boiler-plate-nginx:${{env.Tag}}
             docker run -d --name frontend --network yuseok-web jeong5575/boiler-plate-frontend:${{env.Tag}}
-            docker run -d --name backend --network yuseok-web jeong5575/boiler-plate-backend:${{env.Tag}}
+            docker run -d --name backend --network yuseok-web -e DATABASE_URL=:${{secrets.MOGODB_URI}} jeong5575/boiler-plate-backend:${{env.Tag}}
       
             
