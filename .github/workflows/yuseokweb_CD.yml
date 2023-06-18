@@ -50,7 +50,6 @@ jobs:
             docker stop $(docker ps -aq)
             docker rm $(docker ps -aq)
             docker rmi $(docker images -q)
-            
             docker network create yuseok-web
             docker pull jeong5575/boiler-plate-frontend:${{env.Tag}}
             docker pull jeong5575/boiler-plate-backend:${{env.Tag}}
