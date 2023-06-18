@@ -24,7 +24,7 @@ const navigate = useNavigate();
     dispatch(loginUser(body))
     .then(res=>{
       if (res.payload.loginSuccess){navigate('/')}
-      else {alert('로그인에 실패하였습니다.')}
+      else {alert(res.payload.message)}
     })
   };
 
