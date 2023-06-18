@@ -15,7 +15,8 @@ const onClickHandler = ()=>{
 }
 
   return (
-    <div style={{display :'flex',justifyContent:'center',alignItems:'center' ,width:'100%',height:'100vh'}}>자동 배포 성공!!!!
+    <div style={{display :'flex',justifyContent:'center',alignItems:'center' ,width:'100%',height:'100vh'}}> 좀 되라
+  
     <button onClick={onClickHandler}>로그아웃
     </button>
     
