@@ -16,11 +16,8 @@ const onClickHandlerLogout = ()=>{
 
 
 const onClickHandlerLogin = ()=>{
-  axios.get('/api/users/login').then(res=>{if(res.data.success)
-  
-  {navigate('/') } else alert("로그인에 실패하였습니다.")
-  })
-
+  navigate('/login')
+ 
 }
 
 
