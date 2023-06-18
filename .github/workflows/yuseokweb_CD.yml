@@ -5,7 +5,7 @@ on:
     branches:
       - main
 env:
-  Tag: 1.0.5
+  Tag: 1.0.6
 jobs:
   deploy:
     runs-on: ubuntu-latest
