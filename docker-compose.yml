@@ -9,8 +9,6 @@ services:
       - mynetwork
 
   backend:
-    environment:
-      - DATABASE_URL="mongodb+srv://yxfSjjvpeVGuThMc:yxfSjjvpeVGuThMc@boilerplate.k53ydje.mongodb.net/?retryWrites=true&w=majority"
     build:
       context: ./backend
       dockerfile: Dockerfile
