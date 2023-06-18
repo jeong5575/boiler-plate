@@ -44,8 +44,8 @@ const navigate = useNavigate();
         <input type="password" value={Password} onChange={onPasswordHandler} />
         <br />
         <button type="submit">Login</button>
-        <button onClick={onClickHandlerRegister}>register</button>
       </form>
+      <button onClick={onClickHandlerRegister}>register</button>
     </div>
   );
 }
