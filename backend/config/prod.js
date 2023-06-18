@@ -1,2 +1,3 @@
+const dbUrl = process.env.DATABASE_URL;
 module.exports = {
-    mongoURI : process.env.mongoURI}
+    mongoURI : dbUrl}
