@@ -28,6 +28,12 @@ const navigate = useNavigate();
     })
   };
 
+  const onClickHandlerRegister = ()=>{
+  
+    navigate('/register') 
+   
+  }
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}>
       <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
@@ -38,6 +44,7 @@ const navigate = useNavigate();
         <input type="password" value={Password} onChange={onPasswordHandler} />
         <br />
         <button type="submit">Login</button>
+        <button onClick={onClickHandlerRegister}>register</button>
       </form>
     </div>
   );
