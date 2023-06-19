@@ -84,7 +84,7 @@ export default function RegisterPage(props) {
 
   return (
      <Container>
-     <Title> <img src="../cloudIMG.png" alt="Logo" style={{ height: '60px',marginTop:"5px", marginBottom:"0px"}}/></Title>
+     <Title> <img src="../cloudIMG.png" href="/" alt="Logo" style={{ height: '60px',marginTop:"5px", marginBottom:"0px"}}/></Title>
      <Form onFinish={onFinish} onSubmit={onSubmitHandler} >
        <Form.Item name="닉네임"  value={Name} onChange={onNameHandler} rules={[{ required: true, message: '닉네임을 입력 해주세요' }]}>
          <Input placeholder="닉네임" />
@@ -109,7 +109,7 @@ export default function RegisterPage(props) {
            }),
          ]} 
        >
-         <Input.Password value={ConfirmPassword} onChange={onConfirmPasswordHandler} placeholder="Confirm Password" />
+         <Input.Password value={ConfirmPassword} onChange={onConfirmPasswordHandler} placeholder="패스워드 확인" />
        </Form.Item>
        <Form.Item>
          <Button type="primary" htmlType="submit" block>
