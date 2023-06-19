@@ -48,7 +48,7 @@ export default function RegisterPage(props) {
    const onFinish = (values) => {
     console.log('Received values of form:', values);
   };
-  
+
   const onEmailHandler = (e) => {
     setEmail(e.currentTarget.value);
   };
@@ -92,11 +92,11 @@ export default function RegisterPage(props) {
        <Form.Item name="이메일" value={Email} onChange={onEmailHandler} rules={[{ required: true, message: '이메일을 입력 해주세요' }]}>
          <Input type="email" placeholder="이메일" />
        </Form.Item>
-       <Form.Item name="password" value={Password} onChange={onPasswordHandler} rules={[{ required: true, message: '패스워드를 입력 해주세요' }]}>
+       <Form.Item name="패스워드" value={Password} onChange={onPasswordHandler} rules={[{ required: true, message: '패스워드를 입력 해주세요' }]}>
          <Input.Password placeholder="패스워드" />
        </Form.Item>
        <Form.Item
-         name="confirm-password"
+         name="패스워드 확인 "
          rules={[
            { required: true, message: '패스워드를 확인 해주세요' },
            ({ getFieldValue }) => ({
