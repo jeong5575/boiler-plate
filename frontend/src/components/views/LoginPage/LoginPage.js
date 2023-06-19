@@ -46,6 +46,7 @@ const navigate = useNavigate();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    console.log("로그인 요청 보냄")
     let body = {email : Email,password:Password}
 
     dispatch(loginUser(body))
