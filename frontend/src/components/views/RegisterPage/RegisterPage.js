@@ -41,9 +41,9 @@ export default function RegisterPage(props) {
   const [ConfirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
 
-  // const handleNavigation = () => {
-  //   navigate('/login'); // Navigate to the '/login' page
-  // };
+   const handleNavigation = () => {
+    navigate('/login'); // Navigate to the '/login' page
+   };
   
   const onEmailHandler = (e) => {
     setEmail(e.currentTarget.value);
@@ -86,10 +86,10 @@ export default function RegisterPage(props) {
          <Input placeholder="닉네임" />
        </Form.Item>
        <Form.Item name="이메일" value={Email} onChange={onEmailHandler} rules={[{ required: true, message: '이메일을 입력 해주세요' }]}>
-         <Input type="email" placeholder="Email" />
+         <Input type="email" placeholder="이메일" />
        </Form.Item>
        <Form.Item name="password" value={Password} onChange={onPasswordHandler} rules={[{ required: true, message: '패스워드를 입력 해주세요' }]}>
-         <Input.Password placeholder="Password" />
+         <Input.Password placeholder="패스워드" />
        </Form.Item>
        <Form.Item
          name="confirm-password"
@@ -112,7 +112,7 @@ export default function RegisterPage(props) {
            가입하기
          </Button>
          <Hint>
-           이미 회원이신가요? <a href="signin">로그인 하기</a>
+           이미 회원이신가요? <a href="login">로그인 하기</a>
          </Hint>
        </Form.Item>
      </Form>
