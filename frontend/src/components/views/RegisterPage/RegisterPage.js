@@ -45,6 +45,10 @@ export default function RegisterPage(props) {
     navigate('/login'); // Navigate to the '/login' page
    };
   
+   const onFinish = (values) => {
+    console.log('Received values of form:', values);
+  };
+  
   const onEmailHandler = (e) => {
     setEmail(e.currentTarget.value);
   };
