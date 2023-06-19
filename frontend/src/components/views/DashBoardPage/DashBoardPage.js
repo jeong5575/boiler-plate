@@ -31,30 +31,35 @@ const CustomDivider = styled(Divider)`
 `;
 
 
- const navigate = useNavigate();
-
-const onClickHandlerLogout = ()=>{
-  axios.get('/api/users/logout').then(res=>{if(res.data.success)
-  
-  {navigate('/') } else alert("로그아웃에 실패하였습니다.")
-  })
-
-}
-
-const onClickHandlerLogin = ()=>{
-  navigate('/login')
- 
-}
-
-
-const onClickHandlerRegister = ()=>{
-  navigate('/register')
- 
-}
-
-
 
 export default function DashBoardPage() {
+
+
+    const navigate = useNavigate();
+
+    const onClickHandlerLogout = ()=>{
+      axios.get('/api/users/logout').then(res=>{if(res.data.success)
+      
+      {navigate('/') } else alert("로그아웃에 실패하였습니다.")
+      })
+    
+    }
+    
+    const onClickHandlerLogin = ()=>{
+      navigate('/login')
+     
+    }
+    
+    
+    const onClickHandlerRegister = ()=>{
+      navigate('/register')
+     
+    }
+    
+
+
+
+
   return (<div>
     <Row >
      <Col span={8} offset={2}> <img src="../cloudIMG.png" alt="Logo" style={{ height: '50px', marginLeft: '10%',marginTop:"15px", marginBottom:"0px"}} />
