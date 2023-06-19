@@ -62,7 +62,9 @@ export default function DashBoardPage() {
 
   return (<div>
     <Row >
-     <Col span={8} offset={2}> <img src="../cloudIMG.png" alt="Logo" style={{ height: '50px', marginLeft: '10%',marginTop:"15px", marginBottom:"0px"}} />
+     <Col span={8} offset={2}> 
+     <a href='/'><img src="../cloudIMG.png" alt="Logo" 
+     style={{ height: '50px', marginLeft: '10%',marginTop:"15px", marginBottom:"0px"}} /></a>
   </Col>
   <Col span={11} offset={3} style={{marginTop:"15px", marginBottom:"0px"}}>
     <CustomDiv>

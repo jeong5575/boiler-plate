@@ -64,7 +64,7 @@ const navigate = useNavigate();
   return ( 
 
 <Container>
-<Title> <img src="../cloudIMG.png" href="/" alt="Logo" style={{ height: '60px',marginTop:"5px", marginBottom:"0px"}}/></Title>
+<Title> <a href='/'><img src="../cloudIMG.png" href="/" alt="Logo" style={{ height: '60px',marginTop:"5px", marginBottom:"0px"}}/></a></Title>
 <Form onSubmit={onSubmitHandler} >
  
   <Form.Item name="이메일" value={Email} onChange={onEmailHandler} rules={[{ required: true, message: '이메일을 입력 해주세요' }]}>
