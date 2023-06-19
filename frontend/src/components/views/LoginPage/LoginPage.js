@@ -6,6 +6,26 @@ import { Form, Input, Button, Row, Col } from 'antd';
 import styled from 'styled-components';
 
 
+const Container = styled.div`
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 10%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+`;
+
+const Title = styled.h2`
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+const Hint = styled.p`
+  color: #777;
+  font-size: 14px;
+  margin-top: 5px;
+`;
 
 
 
@@ -41,18 +61,30 @@ const navigate = useNavigate();
    
   }
 
-  return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}>
-      <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
-        <label>Email</label>
-        <input type="email" value={Email} onChange={onEmailHandler} />
+  return ( 
 
-        <label>Password</label>
-        <input type="password" value={Password} onChange={onPasswordHandler} />
-        <br />
-        <button type="submit">Login</button>
-      </form>
-      <button onClick={onClickHandlerRegister}>register</button>
-    </div>
+<Container>
+<Title> <img src="../cloudIMG.png" href="/" alt="Logo" style={{ height: '60px',marginTop:"5px", marginBottom:"0px"}}/></Title>
+<Form onFinish={onFinish} onSubmit={onSubmitHandler} >
+ 
+  <Form.Item name="이메일" value={Email} onChange={onEmailHandler} rules={[{ required: true, message: '이메일을 입력 해주세요' }]}>
+    <Input type="email" placeholder="이메일" />
+  </Form.Item>
+  <Form.Item name="패스워드" value={Password} onChange={onPasswordHandler} rules={[{ required: true, message: '패스워드를 입력 해주세요' }]}>
+    <Input.Password placeholder="패스워드" />
+  </Form.Item>
+
+  <Form.Item>
+    <Button type="primary" htmlType="submit" block>
+      로그인하기
+    </Button>
+    <Hint>
+      회원이 아니신가요? <a href="register">회원가입 하기</a>
+    </Hint>
+  </Form.Item>
+</Form>
+</Container>
+
+
   );
 }

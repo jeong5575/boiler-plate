@@ -1,6 +1,6 @@
 import {React,useEffect} from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 import { Button, Space } from 'antd';
 import styled from 'styled-components';
 import { Divider ,Col, Row} from 'antd';
@@ -57,8 +57,8 @@ const onClickHandlerRegister = ()=>{
 
   return (<div>
   <Row >
-    <Col span={8} offset={2}>  <img src="../cloudIMG.png" alt="Logo" style={{ height: '50px', marginLeft: '10%',marginTop:"15px", marginBottom:"0px"}} />
-</Col>
+  <Link to="/"> <Col span={8} offset={2}> <img src="../cloudIMG.png" alt="Logo" style={{ height: '50px', marginLeft: '10%',marginTop:"15px", marginBottom:"0px"}} />
+</Col></Link> 
 <Col span={11} offset={3} style={{marginTop:"15px", marginBottom:"0px"}}>
   <CustomDiv>
     
