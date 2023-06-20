@@ -58,6 +58,14 @@ const navigate = useNavigate();
 
   const onFinish = (values) => {
     console.log('Received values of form:', values);
+    console.log("로그인 요청 보냄")
+    let body = {email : Email,password:Password}
+
+    dispatch(loginUser(body))
+    .then(res=>{
+      if (res.payload.loginSuccess){navigate('/')}
+      else {alert(res.payload.message)}
+    })
   };
 
   const onClickHandlerRegister = ()=>{
@@ -77,7 +85,7 @@ const navigate = useNavigate();
             />
           </a>
         </Title>
-        <Form onFinish={onFinish} onSubmit ={onSubmitHandler}>
+        <Form onFinish={onFinish}>
           <Form.Item name="email" value={Email} onChange={onEmailHandler} rules={[{ required: true, message: '이메일을 입력해주세요.' }]}>
             <Input type="email" placeholder="이메일" />
           </Form.Item>
