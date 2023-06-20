@@ -67,7 +67,8 @@ export default function RegisterPage(props) {
   };
   
   const onSubmitHandler = (e) => {
-    e.preventDefault();
+    
+    console.log('Received values of form:', e);
   if(Password !== ConfirmPassword ){
    return alert("비밀번호가 일치하지 않습니다.")
   }
@@ -93,7 +94,7 @@ export default function RegisterPage(props) {
             style={{ height: '60px', marginTop: "5px", marginBottom: "0px" }}
           />
         </Title>
-        <Form onFinish={onFinish} onSubmit={onSubmitHandler}>
+        <Form onFinish={onSubmitHandler}>
           <Form.Item name="nickname" value={Name} onChange={onNameHandler} rules={[{ required: true, message: '닉네임을 입력해주세요.' }]}>
             <Input placeholder="닉네임" />
           </Form.Item>
