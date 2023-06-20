@@ -73,7 +73,7 @@ const navigate = useNavigate();
             />
           </a>
         </Title>
-        <Form onSubmit={onSubmitHandler}>
+        <Form onFinish={onSubmitHandler}>
           <Form.Item name="email" value={Email} onChange={onEmailHandler} rules={[{ required: true, message: '이메일을 입력해주세요.' }]}>
             <Input type="email" placeholder="이메일" />
           </Form.Item>
