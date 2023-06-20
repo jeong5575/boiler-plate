@@ -56,9 +56,9 @@ const navigate = useNavigate();
     })
   };
 
-  const onFinish = (values) => {
-    console.log('Received values of form:', values);
-    onSubmitHandler();
+  const onFinish = (e) => {
+    console.log('Received values of form:', e);
+    e.onSubmitHandler();
   };
 
   const onClickHandlerRegister = ()=>{
