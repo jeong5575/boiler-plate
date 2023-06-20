@@ -48,6 +48,7 @@ const navigate = useNavigate();
     
     console.log('Received values of form:', e);
     console.log("로그인 요청 보냄")
+    console.log(Email,Password)
     let body = {email : Email,password:Password}
 
     dispatch(loginUser(body))
