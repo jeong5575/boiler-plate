@@ -56,6 +56,10 @@ const navigate = useNavigate();
     })
   };
 
+  const onFinish = (values) => {
+    console.log('Received values of form:', values);
+  };
+
   const onClickHandlerRegister = ()=>{
   
     navigate('/register') 
@@ -73,7 +77,7 @@ const navigate = useNavigate();
             />
           </a>
         </Title>
-        <Form onFinish={onSubmitHandler}>
+        <Form onFinish={onFinish} onSubmit ={onSubmitHandler}>
           <Form.Item name="email" value={Email} onChange={onEmailHandler} rules={[{ required: true, message: '이메일을 입력해주세요.' }]}>
             <Input type="email" placeholder="이메일" />
           </Form.Item>
