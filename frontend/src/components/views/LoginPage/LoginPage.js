@@ -45,6 +45,8 @@ const navigate = useNavigate();
   };
 
   const onSubmitHandler = (e) => {
+    
+    console.log('Received values of form:', e);
     e.preventDefault();
     console.log("로그인 요청 보냄")
     let body = {email : Email,password:Password}
@@ -78,7 +80,7 @@ const navigate = useNavigate();
             />
           </a>
         </Title>
-        <Form onFinish={{onFinish,onSubmitHandler}}>
+        <Form onFinish={onSubmitHandler}>
           <Form.Item name="email" value={Email} onChange={onEmailHandler} rules={[{ required: true, message: '이메일을 입력해주세요.' }]}>
             <Input type="email" placeholder="이메일" />
           </Form.Item>
