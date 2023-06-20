@@ -58,7 +58,7 @@ const navigate = useNavigate();
 
   const onFinish = (e) => {
     console.log('Received values of form:', e);
-    e.onSubmitHandler();
+    onSubmitHandler(e);
   };
 
   const onClickHandlerRegister = ()=>{
