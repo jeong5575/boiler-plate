@@ -31,6 +31,8 @@ const Hint = styled.p`
 
 
 export default function LoginPage(props) {
+  
+
 const navigate = useNavigate();
   const dispatch = useDispatch();
   const [Email, setEmail] = useState('');
@@ -54,9 +56,9 @@ const navigate = useNavigate();
     console.log(e.email)
     setEmail(e.email)
     setPassword(e.password)
-    console.log(Email,Password)
-    let body = {email : Email,password:Password}
-
+    let body = {email : e.email,password:e.password}
+    
+    console.log(body)
     dispatch(loginUser(body))
     .then(res=>{
       if (res.payload.loginSuccess){navigate('/')}
@@ -74,7 +76,7 @@ const navigate = useNavigate();
     navigate('/register') 
    
   }
-
+   
     return (
       <Container>
         <Title>

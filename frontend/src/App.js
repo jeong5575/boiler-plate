@@ -8,7 +8,6 @@ import LandingPage from './components/views/LandingPage/LandingPage';
 import Auth1 from './hoc/Auth1';
 import DashBoardPage from './components/views/DashBoardPage/DashBoardPage';
 
-
 function App() {
   return (
     <Router>
