@@ -1,11 +1,12 @@
-import {React,useEffect} from 'react'
+import {React,useEffect,useState} from 'react'
 import axios from 'axios'
-import { useNavigate,Link } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { Button, Space } from 'antd';
 import styled from 'styled-components';
-import { Divider ,Col, Row} from 'antd';
-
-
+import { Col, Row} from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { auth } from '../../../_actions/user_action';
+import { useDispatch } from 'react-redux';
 
 const CustomButton = styled(Button)`
   color: black;
@@ -24,16 +25,12 @@ const CustomDiv = styled.div`
  text-align: right;
 `;
 
-const CustomDivider = styled(Divider)`
-
-    border-width: 1.0px;
-    border-color: #c2c3cd;
-`;
-
-
 
 export default function Header() {
+
   
+  const dispatch = useDispatch();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
  const navigate = useNavigate();
 
 const onClickHandlerLogout = ()=>{
@@ -55,6 +52,17 @@ const onClickHandlerRegister = ()=>{
  
 }
 
+useEffect(() => {
+  // Check if the user is logged in
+  dispatch(auth()).then(res => {
+    console.log(res.payload.isAuth)
+    if (res.payload.isAuth) {
+      setIsLoggedIn(true);
+    } 
+  });
+}, [dispatch]);
+
+
   return (<div>
   <Row >
    <Col span={8} offset={2}> <a href='/'><img src="../cloudIMG.png" alt="Logo" style={{ height: '50px', marginLeft: '10%',marginTop:"15px", marginBottom:"0px"}} />
@@ -75,7 +83,9 @@ const onClickHandlerRegister = ()=>{
         공지 사항
 
       </CustomButton>
-       
+      {isLoggedIn ? (
+                  <Button onClick={onClickHandlerLogout} type="link" icon={<UserOutlined />} />
+                ):(
       <div style={{ marginRight: "165px", marginTop: "15px" }}>
         <CustomButton onClick={onClickHandlerLogin} type="link" >
           로그인
@@ -84,7 +94,7 @@ const onClickHandlerRegister = ()=>{
         <CustomButton onClick={onClickHandlerRegister} type="link" >
           회원가입
         </CustomButton>
-      </div>
+      </div>)}
     </Space>
 
   </CustomDiv>
