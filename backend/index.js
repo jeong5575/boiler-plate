@@ -48,7 +48,7 @@ app.post('/api/users/register', (req, res) => {
           message: "제공된 이메일에 해당하는 유저가 없습니다.",
         });
       }
-    
+      console.log(req.body.password);
       const isMatch = await user.comparePassword(req.body.password);
     
       if (!isMatch) {

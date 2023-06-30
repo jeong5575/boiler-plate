@@ -3,16 +3,12 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
-    networks:
-      - mynetwork
+      dockerfile: Dockerfile      
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    networks:
-      - mynetwork
 
   nginx:
     restart: always
@@ -22,8 +18,5 @@ services:
       
     ports:
       - 2000:80
-    networks:
-      - mynetwork
 
-networks:
-  mynetwork:
+

@@ -37,17 +37,23 @@ const navigate = useNavigate();
   const [Password, setPassword] = useState('');
 
   const onEmailHandler = (e) => {
+    console.log("sea"+(e.currentTarget.value))
     setEmail(e.currentTarget.value);
   };
 
   const onPasswordHandler = (e) => {
+   
     setPassword(e.currentTarget.value);
+    console.log("set password"+(e.currentTarget.value))
   };
 
   const onSubmitHandler = (e) => {
     
     console.log('Received values of form:', e);
     console.log("로그인 요청 보냄")
+    console.log(e.email)
+    setEmail(e.email)
+    setPassword(e.password)
     console.log(Email,Password)
     let body = {email : Email,password:Password}
 
@@ -93,7 +99,7 @@ const navigate = useNavigate();
               로그인하기
             </Button>
             <Hint>
-              회원이 아니신가요? <a href="/register">회원가입 하기</a>
+              회원이 아니신가요?<a href="/register">회원가입 하기</a>
             </Hint>
           </Form.Item>
         </Form>
