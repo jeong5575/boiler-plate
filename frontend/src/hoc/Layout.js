@@ -10,7 +10,7 @@ const HeaderDiv = styled.div`
   width: 100%;
   background-color: rgba(255, 255, 255, 0);
   transition: background-color 0.3s ease-in-out;
-
+  
   &.scrolled {
     background-color: rgba(255, 255, 255, 1);
   }
@@ -28,21 +28,25 @@ const Main = styled.main`
 
 
 const CustomDivider = styled(Divider)`
-    position: absolute;
-  top: 66px;
+  position: relative;
+  
   left: 50%;
   transform: translateX(-50%);
-    width: 100vw;
+    width: 98.91vw;
     border-width: 1.5px;
     border-color: #c2c3cd;
     opacity: 1;
   transition: opacity 0.5s ease-in-out;
-
+ background-color: white;
   &.show {
     opacity: 0.01;
   }
 `;
 
+const FooterDiv = styled.div`
+ 
+  background-color: #424242;
+`;
 
 const ContainerDiv = styled.div`
   width: 1000px;
@@ -50,6 +54,7 @@ const ContainerDiv = styled.div`
   margin-right: auto;
   background-color: aliceblue;
 `;
+
 
 export default function Layout({ children }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -77,6 +82,7 @@ export default function Layout({ children }) {
   }, [isScrolled, showContent]);
 
   return (
+    <div>
     <ContainerDiv>
       <HeaderDiv className={isScrolled ? 'scrolled' : ''}>
         <Header /> {/* 공통 헤더 컴포넌트 */}
@@ -85,7 +91,16 @@ export default function Layout({ children }) {
       </HeaderDiv>
       
       <Main className={showContent ?''  : 'show'}>{children}</Main> {/* 페이지 컨텐츠 */}
-      <Footer /> {/* 공통 푸터 컴포넌트 */}
+ 
+     
     </ContainerDiv>
+    
+    <FooterDiv>
+    <ContainerDiv>
+      <Footer /> {/* 공통 푸터 컴포넌트 */}
+      </ContainerDiv>
+      </FooterDiv>
+      
+    </div>
   );
 }
