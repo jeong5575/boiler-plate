@@ -16,11 +16,11 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-//   app.use((req, res, next) => {
-//    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:3000'); // frontend의 도메인 및 포트
-//    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//    next();
-//  });
+  app.use((req, res, next) => {
+   res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:3000'); // frontend의 도메인 및 포트
+   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+   next();
+ });
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

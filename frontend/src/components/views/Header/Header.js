@@ -26,6 +26,7 @@ const CustomDiv = styled.div`
 `;
 
 
+
 export default function Header() {
 
   
@@ -36,7 +37,7 @@ export default function Header() {
 const onClickHandlerLogout = ()=>{
   axios.get('/api/users/logout').then(res=>{if(res.data.success)
   
-  {navigate('/login') } else alert("로그아웃에 실패하였습니다.")
+  {navigate('/') } else alert("로그아웃에 실패하였습니다.")
   })
 
 }
@@ -64,42 +65,37 @@ useEffect(() => {
 
 
   return (<div>
-  <Row >
-   <Col span={8} offset={2}> <a href='/'><img src="../cloudIMG.png" alt="Logo" style={{ height: '50px', marginLeft: '10%',marginTop:"15px", marginBottom:"0px"}} />
-   </a></Col>
-<Col span={11} offset={3} style={{marginTop:"15px", marginBottom:"0px"}}>
-  <CustomDiv>
-    
-
-    <Space wrap size={25} align='baseline' >
-      <CustomButton type="link" >
-        질문 게시판
-      </CustomButton>
-      <CustomButton type="link" >
-        자유 게시판
-
-      </CustomButton>
-      <CustomButton type="link" >
-        공지 사항
-
-      </CustomButton>
-      {isLoggedIn ? (
-                  <Button onClick={onClickHandlerLogout} type="link" icon={<UserOutlined />} />
-                ):(
-      <div style={{ marginRight: "165px", marginTop: "15px" }}>
-        <CustomButton onClick={onClickHandlerLogin} type="link" >
-          로그인
-        </CustomButton>
-        /
-        <CustomButton onClick={onClickHandlerRegister} type="link" >
-          회원가입
-        </CustomButton>
-      </div>)}
-    </Space>
-
-  </CustomDiv>
-  </Col>
-  </Row>
+    <Row>
+      <Col span={24} style={{ marginTop: '15px', marginBottom: '0px' }}>
+        <CustomDiv>
+          <Space wrap size={25} align="baseline">
+            <a href="/">
+              <img
+                src="../cloudIMG.png"
+                alt="Logo"
+                style={{ height: '50px', marginLeft: '10%', marginTop: '15px', marginBottom: '0px' }}
+              />
+            </a>
+            <CustomButton type="link">질문 게시판</CustomButton>
+            <CustomButton type="link">자유 게시판</CustomButton>
+            <CustomButton type="link">공지 사항</CustomButton>
+            {isLoggedIn ? (
+              <Button onClick={onClickHandlerLogout} type="link" icon={<UserOutlined />} />
+            ) : (
+              <div style={{ marginRight: '165px', marginTop: '15px' }}>
+                <CustomButton onClick={onClickHandlerLogin} type="link">
+                  로그인
+                </CustomButton>
+                /
+                <CustomButton onClick={onClickHandlerRegister} type="link">
+                  회원가입
+                </CustomButton>
+              </div>
+            )}
+          </Space>
+        </CustomDiv>
+      </Col>
+    </Row>
   </div>
   );
 }
